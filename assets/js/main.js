@@ -11,41 +11,44 @@ const RentivoApp = {
   favorites: JSON.parse(localStorage.getItem('rentivo_favorites') || '[]'),
   darkMode: localStorage.getItem('rentivo_dark_mode') === 'true',
   rtl: localStorage.getItem('rentivo_rtl') === 'true',
-  isLoggedIn: localStorage.getItem('rentivo_logged_in') !== 'false', // Default true for demo
-  user: JSON.parse(localStorage.getItem('rentivo_user') || '{"name":"Alex Morgan","email":"alex.m@example.com"}'),
+  isLoggedIn: false,
+  user: null,
   searchOpen: false,
   mobileMenuOpen: false,
 
   // Auth Methods
   login: function(email, password, name = '') {
-    const userName = name || email.split('@')[0];
-    const user = { name: userName.charAt(0).toUpperCase() + userName.slice(1), email: email };
-    this.user = user;
-    this.isLoggedIn = true;
-    localStorage.setItem('rentivo_logged_in', 'true');
-    localStorage.setItem('rentivo_user', JSON.stringify(user));
-    showToast(`Welcome back, ${user.name}!`, 'success');
+    localStorage.removeItem('rentivo_logged_in');
+    localStorage.removeItem('rentivo_user');
+    showToast('Logged in successfully!', 'success');
     setTimeout(() => {
       window.location.href = 'index.html';
     }, 400);
   },
 
   signup: function(name, email, password) {
-    const user = { name: name, email: email };
-    this.user = user;
-    this.isLoggedIn = true;
-    localStorage.setItem('rentivo_logged_in', 'true');
-    localStorage.setItem('rentivo_user', JSON.stringify(user));
-    showToast(`Account created! Welcome to Rentivo, ${name}.`, 'success');
+    localStorage.removeItem('rentivo_logged_in');
+    localStorage.removeItem('rentivo_user');
+    showToast('Account created successfully!', 'success');
     setTimeout(() => {
       window.location.href = 'index.html';
     }, 400);
   },
 
+  socialLogin: function(provider) {
+    localStorage.removeItem('rentivo_logged_in');
+    localStorage.removeItem('rentivo_user');
+    showToast(`Connecting with ${provider}...`, 'info');
+    setTimeout(() => {
+      showToast(`Welcome! Logged in with ${provider}.`, 'success');
+      window.location.href = 'index.html';
+    }, 500);
+  },
+
   logout: function() {
     this.isLoggedIn = false;
     this.user = null;
-    localStorage.setItem('rentivo_logged_in', 'false');
+    localStorage.removeItem('rentivo_logged_in');
     localStorage.removeItem('rentivo_user');
     showToast('Logged out successfully', 'info');
     setTimeout(() => {
@@ -125,6 +128,8 @@ const ICONS = {
   youtube: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>',
   google: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.761H12.545z"/></svg>',
   apple: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.67-.82 1.13-1.97.99-3.12-1 .04-2.18.67-2.88 1.49-.6.7-1.14 1.84-.99 2.96 1.12.09 2.22-.51 2.88-1.33z"/></svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+  eyeOff: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
 };
 
 // Category icon SVGs
@@ -264,48 +269,8 @@ function initHeader() {
   // Header user dropdown & logout wiring
   const profileBtn = document.getElementById('headerProfile');
   if (profileBtn) {
-    if (RentivoApp.isLoggedIn) {
-      const actions = profileBtn.parentElement;
-      if (actions && !document.getElementById('userDropdown')) {
-        actions.style.position = 'relative';
-        const dropdown = document.createElement('div');
-        dropdown.className = 'user-dropdown';
-        dropdown.id = 'userDropdown';
-        dropdown.innerHTML = `
-          <div class="user-dropdown__header">
-            <div class="user-dropdown__avatar">${(RentivoApp.user?.name || 'A').charAt(0)}</div>
-            <div class="user-dropdown__info">
-              <div class="user-dropdown__name">${RentivoApp.user?.name || 'Alex Morgan'}</div>
-              <div class="user-dropdown__email">${RentivoApp.user?.email || 'alex.m@example.com'}</div>
-            </div>
-          </div>
-          <div class="user-dropdown__divider"></div>
-          <a href="profile.html" class="user-dropdown__item">${ICONS.user} My Profile</a>
-          <a href="my-rentals.html" class="user-dropdown__item">${ICONS.package} My Rentals</a>
-          <a href="favorites.html" class="user-dropdown__item">${ICONS.heart} Saved Items</a>
-          <a href="help.html" class="user-dropdown__item">${ICONS.helpCircle} Help Center</a>
-          <div class="user-dropdown__divider"></div>
-          <button class="user-dropdown__item user-dropdown__item--logout" id="dropdownLogoutBtn" onclick="RentivoApp.logout()">
-            ${ICONS.logOut} Logout
-          </button>
-        `;
-        actions.appendChild(dropdown);
-
-        profileBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          dropdown.classList.toggle('open');
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!actions.contains(e.target)) {
-            dropdown.classList.remove('open');
-          }
-        });
-      }
-    } else {
-      profileBtn.href = 'login.html';
-      profileBtn.title = 'Log In';
-    }
+    profileBtn.href = 'login.html';
+    profileBtn.title = 'Log In';
   }
 
   // Bind all data-logout buttons
@@ -330,7 +295,11 @@ function initMobileMenu() {
   const iconFav = menu.querySelector('#mobNavFav'); if (iconFav) iconFav.innerHTML = ICONS.heart;
   const iconCart = menu.querySelector('#mobNavCart'); if (iconCart) iconCart.innerHTML = ICONS.bag;
   const iconHelp = menu.querySelector('#mobNavHelp'); if (iconHelp) iconHelp.innerHTML = ICONS.helpCircle;
-  const btnProf = menu.querySelector('#mobBtnProfile'); if (btnProf) btnProf.innerHTML = ICONS.user;
+  const btnProfAnchor = menu.querySelector('.mobile-menu__footer a.mobile-menu__action-btn');
+  if (btnProfAnchor) {
+    btnProfAnchor.href = 'login.html';
+    btnProfAnchor.innerHTML = `<span id="mobBtnProfile">${ICONS.user}</span> Log In`;
+  }
   const btnFav = menu.querySelector('#mobBtnFav'); if (btnFav) btnFav.innerHTML = ICONS.heart;
   const btnBag = menu.querySelector('#mobBtnBag'); if (btnBag) btnBag.innerHTML = ICONS.bag;
 
@@ -1387,8 +1356,24 @@ function initSignupPage() {
       e.preventDefault();
       const name = document.getElementById('signupName')?.value || 'New User';
       const email = document.getElementById('signupEmail')?.value || 'user@example.com';
-      const password = document.getElementById('signupPassword')?.value || '******';
+      const password = document.getElementById('signupPassword')?.value || '';
+      const confirmPassword = document.getElementById('signupConfirmPassword')?.value || '';
+
+      if (password && confirmPassword && password !== confirmPassword) {
+        showToast('Passwords do not match. Please enter matching passwords.', 'error');
+        return;
+      }
+
       RentivoApp.signup(name, email, password);
     });
   }
+}
+
+// ── Password Visibility Toggle ──
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  btn.innerHTML = isPassword ? ICONS.eyeOff : ICONS.eye;
 }

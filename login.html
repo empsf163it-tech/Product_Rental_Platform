@@ -18,23 +18,45 @@
         <h1 class="auth-card__title">Welcome Back</h1>
         <p class="auth-card__subtitle">Log in to your Rentivo account to continue.</p>
       </div>
+
+      <!-- Social Logins -->
+      <div class="social-logins">
+        <button type="button" class="btn-social btn-social--google" onclick="RentivoApp.socialLogin('Google')">
+          <span id="googleIcon"></span> Google
+        </button>
+        <button type="button" class="btn-social btn-social--apple" onclick="RentivoApp.socialLogin('Apple')">
+          <span id="appleIcon"></span> Apple
+        </button>
+      </div>
+
+      <div class="auth-divider">
+        <span>or continue with email</span>
+      </div>
       
       <form class="auth-card__form" id="loginForm">
         <div class="form-group">
           <label class="form-label" for="loginEmail">Email Address</label>
           <input type="email" class="form-input" id="loginEmail" placeholder="name@example.com" required>
         </div>
+        
         <div class="form-group">
           <label class="form-label" for="loginPassword">Password</label>
-          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" required>
+          <div class="password-input-wrap">
+            <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" required>
+            <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('loginPassword', this)" title="Toggle password visibility">
+              <span id="pwdEyeIcon"></span>
+            </button>
+          </div>
         </div>
+
         <div class="auth-card__actions">
           <label class="checkbox-label">
-            <input type="checkbox"> Remember me
+            <input type="checkbox" id="rememberMe"> Remember me
           </label>
-          <a href="#" class="auth-card__link">Forgot password?</a>
+          <a href="#" onclick="showToast('Password reset link sent to your email!', 'info'); return false;" class="auth-card__link">Forgot password?</a>
         </div>
-        <button type="submit" class="btn btn--primary btn--full">Log In</button>
+
+        <button type="submit" class="btn btn--primary btn--full" style="font-weight:700;">Log In</button>
       </form>
       
       <div class="auth-card__footer">
@@ -46,6 +68,9 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    if(document.getElementById('googleIcon')) document.getElementById('googleIcon').innerHTML = ICONS.google;
+    if(document.getElementById('appleIcon')) document.getElementById('appleIcon').innerHTML = ICONS.apple;
+    if(document.getElementById('pwdEyeIcon')) document.getElementById('pwdEyeIcon').innerHTML = ICONS.eye;
   </script>
 </body>
 </html>
