@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete your rental booking on Rentivo. Confirm details, delivery, and payment.">
+  <title>Checkout — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="checkout">
+
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-overlay__content"><div class="search-overlay__input-wrap"><span id="searchIcon"></span><input type="text" placeholder="Search..." class="search-overlay__input"><button data-search-close id="searchClose"></button></div><div class="search-overlay__results"></div></div></div>
+
+  <section class="section-padding" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h1 class="page-title" style="text-align: center; margin-bottom: var(--space-2);">Checkout</h1>
+
+      <!-- Progress -->
+      <div class="checkout-progress">
+        <div class="checkout-step active" data-step="0">
+          <span class="checkout-step__number">1</span>
+          <span class="checkout-step__label">Rental Details</span>
+        </div>
+        <div class="checkout-step__connector"></div>
+        <div class="checkout-step" data-step="1">
+          <span class="checkout-step__number">2</span>
+          <span class="checkout-step__label">Delivery</span>
+        </div>
+        <div class="checkout-step__connector"></div>
+        <div class="checkout-step" data-step="2">
+          <span class="checkout-step__number">3</span>
+          <span class="checkout-step__label">Payment</span>
+        </div>
+        <div class="checkout-step__connector"></div>
+        <div class="checkout-step" data-step="3">
+          <span class="checkout-step__number">4</span>
+          <span class="checkout-step__label">Confirmation</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <div>
+          <!-- Step 1: Rental Details -->
+          <div class="checkout-section active" data-section="0">
+            <h2 class="checkout-section__title">Rental Details</h2>
+            <div class="profile-form-grid">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" value="Alex Johnson">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" value="alex@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" value="+1 (555) 123-4567">
+              </div>
+              <div class="form-group">
+                <label class="form-label">ID Verification</label>
+                <select class="form-select form-input">
+                  <option>Driver's License</option>
+                  <option>Passport</option>
+                  <option>State ID</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top: var(--space-6); display: flex; justify-content: flex-end;">
+              <button class="btn btn--primary btn--lg" data-checkout-next>Continue to Delivery</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Delivery -->
+          <div class="checkout-section" data-section="1">
+            <h2 class="checkout-section__title">Delivery Method</h2>
+            <div class="delivery-options">
+              <div class="delivery-option-card active">
+                <div class="delivery-option-card__radio"></div>
+                <div class="delivery-option-card__info">
+                  <div class="delivery-option-card__name">Standard Delivery</div>
+                  <div class="delivery-option-card__desc">2-3 business days</div>
+                </div>
+                <div class="delivery-option-card__price">$15</div>
+              </div>
+              <div class="delivery-option-card">
+                <div class="delivery-option-card__radio"></div>
+                <div class="delivery-option-card__info">
+                  <div class="delivery-option-card__name">Express Delivery</div>
+                  <div class="delivery-option-card__desc">Next business day</div>
+                </div>
+                <div class="delivery-option-card__price">$30</div>
+              </div>
+              <div class="delivery-option-card">
+                <div class="delivery-option-card__radio"></div>
+                <div class="delivery-option-card__info">
+                  <div class="delivery-option-card__name">Store Pickup</div>
+                  <div class="delivery-option-card__desc">Pick up at nearest hub</div>
+                </div>
+                <div class="delivery-option-card__price">Free</div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+              <h3 style="font-family: var(--font-body); font-size: var(--fs-md); font-weight: 600; margin-bottom: var(--space-4);">Delivery Address</h3>
+              <div class="profile-form-grid">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                  <label class="form-label">Street Address</label>
+                  <input type="text" class="form-input" value="742 Evergreen Terrace">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">City</label>
+                  <input type="text" class="form-input" value="Springfield">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">ZIP Code</label>
+                  <input type="text" class="form-input" value="62704">
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-6); display: flex; justify-content: space-between;">
+              <button class="btn btn--ghost btn--lg" data-checkout-prev>Back</button>
+              <button class="btn btn--primary btn--lg" data-checkout-next>Continue to Payment</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment -->
+          <div class="checkout-section" data-section="2">
+            <h2 class="checkout-section__title">Payment Method</h2>
+            <div class="payment-methods">
+              <div class="payment-method active">
+                <div class="payment-method__radio"></div>
+                <div class="payment-method__icon">VISA</div>
+                <div class="payment-method__name">Credit / Debit Card</div>
+              </div>
+              <div class="payment-method">
+                <div class="payment-method__radio"></div>
+                <div class="payment-method__icon">UPI</div>
+                <div class="payment-method__name">UPI Payment</div>
+              </div>
+              <div class="payment-method">
+                <div class="payment-method__radio"></div>
+                <div class="payment-method__icon">W</div>
+                <div class="payment-method__name">Digital Wallet</div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+              <div class="profile-form-grid">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                  <label class="form-label">Card Number</label>
+                  <input type="text" class="form-input" placeholder="4242 4242 4242 4242">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Expiry</label>
+                  <input type="text" class="form-input" placeholder="MM / YY">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-input" placeholder="123">
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-6); display: flex; justify-content: space-between;">
+              <button class="btn btn--ghost btn--lg" data-checkout-prev>Back</button>
+              <button class="btn btn--primary btn--lg" id="confirmRental">Confirm Rental</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Confirmation -->
+          <div class="checkout-section" data-section="3">
+            <div class="checkout-confirmation">
+              <div class="checkout-confirmation__icon" id="confirmIcon"></div>
+              <h2 class="checkout-confirmation__title">Rental Confirmed!</h2>
+              <p class="checkout-confirmation__text">Your rental has been successfully booked. We'll send you an email confirmation with all the details.</p>
+              <p class="checkout-confirmation__id">Rental ID: <strong>#RNT-2026-0847</strong></p>
+              <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+                <a href="my-rentals.html" class="btn btn--primary btn--lg">View My Rentals</a>
+                <a href="browse.html" class="btn btn--outline btn--lg">Continue Browsing</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="price-summary">
+          <h3 class="price-summary__title">Order Summary</h3>
+          <div class="price-summary__row">
+            <span class="price-summary__row--label">Rental Cost</span>
+            <span class="price-summary__row--value" id="checkoutRental">$0</span>
+          </div>
+          <div class="price-summary__row">
+            <span class="price-summary__row--label">Delivery Fee</span>
+            <span class="price-summary__row--value" id="checkoutDelivery">$15</span>
+          </div>
+          <div class="price-summary__row">
+            <span class="price-summary__row--label">Service Fee</span>
+            <span class="price-summary__row--value" id="checkoutService">$0</span>
+          </div>
+          <div class="price-summary__divider"></div>
+          <div class="price-summary__row price-summary__row--deposit">
+            <span>Security Deposit (refundable)</span>
+            <span class="price-summary__row--value" id="checkoutDeposit">$0</span>
+          </div>
+          <div class="price-summary__divider"></div>
+          <div class="price-summary__row price-summary__row--total">
+            <span>Total</span>
+            <span id="checkoutTotal">$0</span>
+          </div>
+          <p class="price-summary__note">Your deposit is fully refundable upon return in good condition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+    document.getElementById('confirmIcon').innerHTML = ICONS.check;
+  </script>
+</body>
+</html>

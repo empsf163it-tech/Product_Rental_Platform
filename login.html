@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="login">
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-card__header">
+        <a href="index.html" class="auth-card__logo" id="headerLogo"></a>
+        <h1 class="auth-card__title">Welcome Back</h1>
+        <p class="auth-card__subtitle">Log in to your Rentivo account to continue.</p>
+      </div>
+      
+      <form class="auth-card__form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <input type="email" class="form-input" id="loginEmail" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" required>
+        </div>
+        <div class="auth-card__actions">
+          <label class="checkbox-label">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#" class="auth-card__link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Log In</button>
+      </form>
+      
+      <div class="auth-card__footer">
+        <p>Don't have an account? <a href="signup.html" class="auth-card__link">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+  </script>
+</body>
+</html>

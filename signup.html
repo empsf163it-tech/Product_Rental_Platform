@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="signup">
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-card__header">
+        <a href="index.html" class="auth-card__logo" id="headerLogo"></a>
+        <h1 class="auth-card__title">Create an Account</h1>
+        <p class="auth-card__subtitle">Join Rentivo to start renting premium products.</p>
+      </div>
+      
+      <form class="auth-card__form" id="signupForm">
+        <div class="form-group">
+          <label class="form-label" for="signupName">Full Name</label>
+          <input type="text" class="form-input" id="signupName" placeholder="Alex Morgan" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signupEmail">Email Address</label>
+          <input type="email" class="form-input" id="signupEmail" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signupPassword">Password</label>
+          <input type="password" class="form-input" id="signupPassword" placeholder="Create a password (min. 8 chars)" required minlength="8">
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Sign Up</button>
+      </form>
+      
+      <div class="auth-card__footer">
+        <p>Already have an account? <a href="login.html" class="auth-card__link">Log in</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your saved rental wishlist on Rentivo. Track availability and reserve items for upcoming shoots, events, and trips.">
+  <title>Favorites — Saved Rental Wishlist — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="favorites">
+
+  <!-- Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__content">
+      <div class="search-overlay__input-wrap">
+        <span id="searchIcon"></span>
+        <input type="text" placeholder="Search saved products..." class="search-overlay__input">
+        <button data-search-close id="searchClose"></button>
+      </div>
+      <div class="search-overlay__results"></div>
+    </div>
+  </div>
+
+  <!-- Page Title Banner -->
+  <section class="my-rentals-header">
+    <div class="container">
+      <div class="my-rentals-header__inner">
+        <div>
+          <h1 class="my-rentals-header__title">Saved Wishlist & Favorites</h1>
+          <p class="my-rentals-header__subtitle">Keep track of items for your upcoming events, photo shoots, and weekend trips.</p>
+        </div>
+        <div style="display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <button class="btn btn--outline btn--md" onclick="clearAllFavorites()">Clear All Saved</button>
+          <a href="browse.html" class="btn btn--primary btn--md">+ Add More Items</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section -->
+  <section class="section-padding">
+    <div class="container">
+      
+      <!-- 1. Availability Alert Banner -->
+      <div class="availability-alert-banner">
+        <div class="availability-alert-banner__text">
+          <span id="alertBellIcon"></span>
+          <span><strong>High Availability Alert:</strong> 2 of your saved items are available for upcoming weekend dates. Lock in your dates before they get reserved!</span>
+        </div>
+        <a href="browse.html" class="btn btn--secondary btn--sm">Explore Dates</a>
+      </div>
+
+      <!-- 2. Favorites Toolbar (Filter Pills + Sort) -->
+      <div class="favorites-toolbar">
+        <div class="favorites-filter-pills">
+          <button class="fav-pill active" onclick="filterFavs('all', this)">All Saved (<span id="favCountHeader">3</span>)</button>
+          <button class="fav-pill" onclick="filterFavs('Cameras', this)">Cameras</button>
+          <button class="fav-pill" onclick="filterFavs('Electronics', this)">Electronics</button>
+          <button class="fav-pill" onclick="filterFavs('Furniture', this)">Furniture</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:var(--space-2);">
+          <label style="font-size:var(--fs-xs); color:var(--text-muted); font-weight:var(--fw-semibold);">Sort by:</label>
+          <select class="form-select" style="padding:var(--space-2) var(--space-6) var(--space-2) var(--space-3); font-size:var(--fs-xs); width:auto;" onchange="sortFavs(this.value)">
+            <option value="recent">Recently Saved</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3. Saved Favorites Product Grid -->
+      <div class="products-grid" id="favoritesGrid"></div>
+
+      <!-- Empty State -->
+      <div class="favorites-empty" id="favoritesEmpty" style="display: none;">
+        <div class="favorites-empty__icon" id="favEmptyIcon"></div>
+        <h2 class="favorites-empty__title">Your Saved Wishlist is Empty</h2>
+        <p class="favorites-empty__text">You haven't saved any rental products yet. Tap the heart icon on any camera, tool, drone, or furniture card to save it here for quick booking.</p>
+        <a href="browse.html" class="btn btn--primary btn--lg">Search & Browse Products</a>
+      </div>
+
+      <!-- 4. Wishlist Project Boards Section -->
+      <div style="margin-top: var(--space-16);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:var(--space-6); flex-wrap:wrap; gap:var(--space-4);">
+          <div>
+            <h2 style="font-family:var(--font-heading); font-size:var(--fs-2xl); color:var(--black); margin-bottom:var(--space-1);">Organize Your Rental Projects</h2>
+            <p style="font-size:var(--fs-sm); color:var(--text-muted);">Create custom boards to bundle equipment for specific events or shoots.</p>
+          </div>
+          <button class="btn btn--outline btn--sm" onclick="showToast('Custom project board feature coming soon!', 'info')">+ Create Project Board</button>
+        </div>
+
+        <div class="wishlist-boards-grid">
+          <div class="wishlist-board-card" onclick="showToast('Viewing Creator & Video Rig board', 'info')">
+            <div class="wishlist-board-card__title">🎥 Creator & Video Rig</div>
+            <div class="wishlist-board-card__count">2 items bundled • $75/day est.</div>
+          </div>
+          <div class="wishlist-board-card" onclick="showToast('Viewing Outdoor Camping Trip board', 'info')">
+            <div class="wishlist-board-card__title">⛺ Weekend Camping Trip</div>
+            <div class="wishlist-board-card__count">1 item bundled • $22/day est.</div>
+          </div>
+          <div class="wishlist-board-card" onclick="showToast('Viewing Event Lighting & Audio board', 'info')">
+            <div class="wishlist-board-card__title">🔊 Event Sound & Lighting</div>
+            <div class="wishlist-board-card__count">3 items bundled • $110/day est.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to Rentivo Updates</h3>
+          <p class="footer__newsletter-text">Get notified about new high-demand rental items, promo codes, and priority booking windows.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Search Catalog</a>
+            <a href="browse.html" class="footer__link">Popular Categories</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Dashboard</a>
+            <a href="favorites.html" class="footer__link">Saved Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Return Guidelines</a>
+            <a href="help.html" class="footer__link">Deposit Refunds</a>
+            <a href="help.html" class="footer__link">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About Rentivo</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo Platform. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Security & Deposits</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    document.getElementById('favEmptyIcon').innerHTML = ICONS.heart;
+    document.getElementById('alertBellIcon').innerHTML = ICONS.bell;
+
+    // Social icons
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+
+    // Default pre-populated favorites if empty
+    if (!RentivoApp.favorites || RentivoApp.favorites.length === 0) {
+      RentivoApp.favorites = [1, 3, 9];
+      localStorage.setItem('rentivo_favorites', JSON.stringify(RentivoApp.favorites));
+    }
+
+    function clearAllFavorites() {
+      RentivoApp.favorites = [];
+      localStorage.setItem('rentivo_favorites', '[]');
+      updateFavCount();
+      if (typeof renderFavorites === 'function') renderFavorites();
+      showToast('All saved favorites cleared', 'info');
+      setTimeout(() => location.reload(), 300);
+    }
+
+    function filterFavs(cat, btn) {
+      document.querySelectorAll('.fav-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const grid = document.getElementById('favoritesGrid');
+      let favs = PRODUCTS.filter(p => RentivoApp.favorites.includes(p.id));
+      if (cat !== 'all') {
+        favs = favs.filter(p => p.category === cat);
+      }
+      grid.innerHTML = favs.map(renderProductCard).join('');
+    }
+
+    function sortFavs(val) {
+      const grid = document.getElementById('favoritesGrid');
+      let favs = PRODUCTS.filter(p => RentivoApp.favorites.includes(p.id));
+      if (val === 'price-low') favs.sort((a, b) => a.dailyPrice - b.dailyPrice);
+      if (val === 'price-high') favs.sort((a, b) => b.dailyPrice - a.dailyPrice);
+      if (val === 'rating') favs.sort((a, b) => b.rating - a.rating);
+      grid.innerHTML = favs.map(renderProductCard).join('');
+    }
+
+    const countHeader = document.getElementById('favCountHeader');
+    if (countHeader) countHeader.textContent = RentivoApp.favorites.length;
+  </script>
+</body>
+</html>

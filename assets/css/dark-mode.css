@@ -1,0 +1,273 @@
+/* ============================================
+   RENTIVO — Dark Mode
+   Premium dark theme overrides
+   ============================================ */
+
+body.dark-mode {
+  --bg-primary: #0a0a0d;
+  --bg-secondary: #121217;
+  --bg-card: #18181e;
+  --bg-header: rgba(10, 10, 13, 0.95);
+  --bg-footer: #050507;
+  --bg-input: #1e1e26;
+  --bg-hover: #22222c;
+  --bg-badge: rgba(212, 175, 55, 0.15);
+  --bg-overlay: rgba(0, 0, 0, 0.85);
+
+  --text-primary: #f5efe6;
+  --text-secondary: #cbbba8;
+  --text-muted: #918270;
+  --text-light: #6e6152;
+  --text-inverse: #0f0f12;
+  --text-accent: #ff784e;
+  --text-gold: #f7e69f;
+
+  --border-color: rgba(216, 195, 165, 0.22);
+  --border-light: rgba(216, 195, 165, 0.12);
+  --border-accent: #d4af37;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+  --cream: #1e1e26;
+  --cream-light: #121217;
+  --sand: #2a2a34;
+
+  --success-bg: rgba(39, 174, 96, 0.15);
+  --warning-bg: rgba(243, 156, 18, 0.15);
+  --danger-bg: rgba(231, 76, 60, 0.15);
+  --info-bg: rgba(52, 152, 219, 0.15);
+  --violet-soft: rgba(255, 87, 34, 0.15);
+
+  --gray-50: #141419;
+  --gray-100: #1a1a22;
+  --gray-200: #22222c;
+  --gray-300: #2f2f3c;
+  --gray-400: #6e6152;
+  --gray-500: #918270;
+  --gray-600: #cbbba8;
+}
+
+/* Header */
+body.dark-mode .header {
+  border-bottom-color: var(--border-light);
+}
+
+body.dark-mode .header__logo-text {
+  color: var(--text-primary);
+}
+
+/* Hero */
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #0f1225 0%, #1a1f36 50%, rgba(108, 92, 231, 0.08) 100%);
+}
+
+body.dark-mode .hero__title {
+  color: var(--text-primary);
+}
+
+/* Category tiles */
+body.dark-mode .category-tile__icon {
+  background: rgba(108, 92, 231, 0.15);
+}
+
+/* How it works */
+body.dark-mode .how-it-works {
+  background: #0a0d1a;
+}
+
+/* Trust section */
+body.dark-mode .trust-section {
+  background: #1a1f36;
+}
+
+body.dark-mode .trust-item__icon {
+  background: var(--bg-card);
+}
+
+/* Browse header */
+body.dark-mode .browse-header,
+body.dark-mode .my-rentals-header,
+body.dark-mode .page-title-section {
+  background: #1a1f36;
+  border-bottom-color: var(--border-light);
+}
+
+/* Category header */
+body.dark-mode .category-header {
+  background: linear-gradient(135deg, #0a0d1a 0%, #1a1f36 100%);
+}
+
+/* Product info pricing */
+body.dark-mode .product-info__pricing {
+  background: var(--bg-card);
+}
+
+body.dark-mode .product-info__price-value {
+  color: var(--text-primary);
+}
+
+/* Calendar */
+body.dark-mode .calendar__day--today {
+  border-color: var(--violet-light);
+}
+
+body.dark-mode .calendar__day--booked {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Product card images */
+body.dark-mode .product-card__image {
+  background: #252b48;
+}
+
+body.dark-mode .product-card__favorite {
+  background: rgba(30, 35, 66, 0.9);
+}
+
+body.dark-mode .product-card__favorite:hover {
+  background: var(--bg-card);
+}
+
+body.dark-mode .product-card__favorite svg {
+  stroke: var(--gray-400);
+}
+
+body.dark-mode .product-card__price {
+  color: var(--text-primary);
+}
+
+/* Gallery */
+body.dark-mode .product-gallery__main {
+  background: #252b48;
+}
+
+body.dark-mode .product-gallery__thumb {
+  background: #252b48;
+}
+
+body.dark-mode .product-gallery__nav-btn {
+  background: rgba(30, 35, 66, 0.9);
+  color: var(--text-primary);
+}
+
+/* Delivery options */
+body.dark-mode .delivery-option:hover,
+body.dark-mode .delivery-option.active {
+  background: rgba(108, 92, 231, 0.12);
+}
+
+/* Availability product */
+body.dark-mode .availability-product__image,
+body.dark-mode .rental-card__image,
+body.dark-mode .bag-item__image {
+  background: #252b48;
+}
+
+/* Search overlay */
+body.dark-mode .search-overlay__input-wrap {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+/* Help hero */
+body.dark-mode .help-hero {
+  background: linear-gradient(135deg, #0a0d1a 0%, #1a1f36 100%);
+}
+
+body.dark-mode .help-search {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Help CTA */
+body.dark-mode .help-cta {
+  background: var(--bg-card);
+}
+
+/* Accordion */
+body.dark-mode .accordion__trigger:hover {
+  background: var(--bg-hover);
+}
+
+/* Payment methods */
+body.dark-mode .payment-method:hover,
+body.dark-mode .payment-method.active {
+  background: rgba(108, 92, 231, 0.12);
+}
+
+body.dark-mode .payment-method__icon {
+  background: var(--bg-card);
+}
+
+/* Profile avatar */
+body.dark-mode .profile-sidebar__avatar {
+  background: rgba(108, 92, 231, 0.15);
+}
+
+/* Collection card overlay */
+body.dark-mode .collection-card__bg {
+  background: #252b48;
+}
+
+/* Booking section */
+body.dark-mode .delivery-option-card:hover,
+body.dark-mode .delivery-option-card.active {
+  background: rgba(108, 92, 231, 0.12);
+}
+
+/* Scrollbar */
+body.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Modal */
+body.dark-mode .modal__close:hover {
+  background: var(--bg-hover);
+}
+
+/* Toast */
+body.dark-mode .toast__close:hover {
+  background: var(--bg-hover);
+}
+
+/* Checkout confirmation */
+body.dark-mode .checkout-confirmation__icon {
+  background: rgba(39, 174, 96, 0.12);
+}
+
+/* Bag/favorites empty */
+body.dark-mode .bag-empty__icon,
+body.dark-mode .favorites-empty__icon {
+  background: rgba(108, 92, 231, 0.12);
+}
+
+/* Form select dark arrow */
+body.dark-mode .form-select,
+body.dark-mode .sort-bar__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237b7590' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Filter panel mobile dark */
+body.dark-mode .filter-panel {
+  background: var(--bg-secondary);
+}

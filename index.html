@@ -1,1 +1,355 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rentivo — Rent premium products easily. Discover, compare, and reserve electronics, furniture, cameras, and more with flexible rental periods and secure deposits.">
+  <title>Rentivo — Rent What You Need</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="home">
+
+  <!-- Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+
+      <nav class="header__nav" id="mainNav">
+        <a href="index.html" class="header__nav-link active">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav">
+          <span class="header__badge fav-count" style="display:none">0</span>
+        </a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag">
+          <span class="header__badge bag-count" style="display:none">0</span>
+        </a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__content">
+      <div class="search-overlay__input-wrap">
+        <span id="searchIcon"></span>
+        <input type="text" placeholder="Search products, categories..." class="search-overlay__input" id="searchInput">
+        <button data-search-close id="searchClose"></button>
+      </div>
+      <div class="search-overlay__results"></div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Rent what you need. Return when you're done.</h1>
+        <p class="hero__subtitle">Quality products for a day, a week, or as long as you need them. From cameras to furniture — discover, reserve, and enjoy.</p>
+          <a href="browse.html" class="btn btn--primary btn--lg">Search & Browse Catalog</a>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__image-wrapper" id="heroImage"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rental Search Panel -->
+  <section class="container" style="position: relative; z-index: 10;">
+    <div class="rental-search" data-animate>
+      <h2 class="rental-search__title">What are you looking for?</h2>
+      <form class="rental-search__form" id="rentalSearchForm">
+        <div class="rental-search__field">
+          <label class="rental-search__label">Product / Category</label>
+          <input type="text" class="form-input" placeholder="Camera, furniture, tools..." id="searchProduct">
+        </div>
+        <div class="rental-search__field">
+          <label class="rental-search__label">Start Date</label>
+          <input type="date" class="form-input" id="searchStart">
+        </div>
+        <div class="rental-search__field">
+          <label class="rental-search__label">End Date</label>
+          <input type="date" class="form-input" id="searchEnd">
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg" id="searchBtn">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Popular Categories -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <h2 class="section-title">Popular Categories</h2>
+        <p class="section-subtitle">Explore our most popular rental categories and find exactly what you need.</p>
+      </div>
+      <div class="categories-grid" id="categoriesGrid" data-animate></div>
+    </div>
+  </section>
+
+  <!-- Featured Rentals -->
+  <section class="section-padding" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <h2 class="section-title">Featured Rentals</h2>
+        <p class="section-subtitle">Handpicked products ready to rent. Transparent pricing, flexible durations.</p>
+      </div>
+      <div class="products-grid" id="featuredProducts" data-animate></div>
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href="browse.html" class="btn btn--outline btn--lg">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Rentivo Works -->
+  <section class="section-padding how-it-works">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <h2 class="section-title">How Rentivo Works</h2>
+        <p class="section-subtitle">Four simple steps to rent anything you need.</p>
+      </div>
+      <div class="steps-grid" data-animate>
+        <div class="step-card">
+          <div class="step-card__number">1</div>
+          <h3 class="step-card__title">Choose</h3>
+          <p class="step-card__desc">Browse our catalog and find the perfect product for your needs.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__number">2</div>
+          <h3 class="step-card__title">Schedule</h3>
+          <p class="step-card__desc">Pick your dates. Check availability and see transparent pricing instantly.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__number">3</div>
+          <h3 class="step-card__title">Rent</h3>
+          <p class="step-card__desc">Confirm your booking. We'll deliver it to your door or arrange pickup.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__number">4</div>
+          <h3 class="step-card__title">Return</h3>
+          <p class="step-card__desc">When you're done, return the product. Your deposit is refunded on return.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Collections -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <h2 class="section-title">Popular Rental Collections</h2>
+        <p class="section-subtitle">Curated collections for every occasion and need.</p>
+      </div>
+      <div class="collections-grid" id="collectionsGrid" data-animate></div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="section-padding trust-section">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <h2 class="section-title">Why Rent with Rentivo</h2>
+        <p class="section-subtitle">We take care of the details so you can enjoy your rental.</p>
+      </div>
+      <div class="trust-grid" id="trustGrid" data-animate></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Populate header icons
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+
+    // Hero image
+    document.getElementById('heroImage').innerHTML = getProductSVG('camera', 480);
+
+    // Categories
+    const catsHTML = CATEGORIES.map(c => `
+      <a href="browse.html" class="category-tile">
+        <div class="category-tile__bg"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>
+        <div class="category-tile__overlay"></div>
+        <div class="category-tile__content">
+          <div class="category-tile__icon">${CATEGORY_ICONS[c.icon] || ICONS.grid}</div>
+          <div class="category-tile__name">${c.name}</div>
+          <div class="category-tile__count">${c.count} products</div>
+        </div>
+      </a>
+    `).join('');
+    document.getElementById('categoriesGrid').innerHTML = catsHTML;
+
+    // Collections
+    const collections = [
+      { name: 'Weekend Essentials', count: 24, type: 'camera' },
+      { name: 'Event Ready', count: 18, type: 'speaker' },
+      { name: 'Work From Anywhere', count: 15, type: 'projector' },
+      { name: 'Outdoor Adventures', count: 22, type: 'tent' },
+      { name: 'Home Refresh', count: 19, type: 'chair' },
+      { name: 'Creator Kit', count: 12, type: 'mirrorless' },
+    ];
+    document.getElementById('collectionsGrid').innerHTML = collections.map(c => `
+      <a href="browse.html" class="collection-card">
+        <div class="collection-card__bg">${getProductSVG(c.type, 400)}</div>
+        <div class="collection-card__overlay"></div>
+        <div class="collection-card__content">
+          <h3 class="collection-card__name">${c.name}</h3>
+          <span class="collection-card__count">${c.count} products</span>
+        </div>
+      </a>
+    `).join('');
+
+    // Trust
+    const trustItems = [
+      { title: 'Verified Products', desc: 'Every item inspected and quality-checked before each rental.', icon: ICONS.shield },
+      { title: 'Flexible Periods', desc: 'Rent for a day, a week, or longer. Extend anytime.', icon: ICONS.clock },
+      { title: 'Secure Deposits', desc: 'Refundable deposits with transparent pricing. No hidden fees.', icon: ICONS.creditCard },
+      { title: 'Reliable Delivery', desc: 'Scheduled delivery and pickup at your convenience.', icon: ICONS.truck },
+      { title: 'Easy Returns', desc: 'Simple return process. Drop off or schedule a pickup.', icon: ICONS.refresh },
+    ];
+    document.getElementById('trustGrid').innerHTML = trustItems.map(t => `
+      <div class="trust-item">
+        <div class="trust-item__icon">${t.icon}</div>
+        <h3 class="trust-item__title">${t.title}</h3>
+        <p class="trust-item__desc">${t.desc}</p>
+      </div>
+    `).join('');
+
+    // Footer logo
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    
+    // Social icons
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+  </script>
+</body>
+</html>

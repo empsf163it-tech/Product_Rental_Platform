@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View your rental details, tracking timeline, and manage your rental on Rentivo.">
+  <title>Rental Details — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="rental-details">
+
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link active">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-overlay__content"><div class="search-overlay__input-wrap"><span id="searchIcon"></span><input type="text" placeholder="Search..." class="search-overlay__input"><button data-search-close id="searchClose"></button></div><div class="search-overlay__results"></div></div></div>
+
+  <section class="page-title-section">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+      <div>
+        <h1 class="page-title">Rental Details</h1>
+        <p class="page-subtitle">Rental #RNT-2026-0847</p>
+      </div>
+      <span class="badge badge--active" style="font-size: var(--fs-sm); padding: var(--space-2) var(--space-4);">Active</span>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="rental-detail-layout">
+        <div>
+          <!-- Product Info -->
+          <div class="booking-section">
+            <h2 class="booking-section__title"><span id="pkgIcon"></span> Product</h2>
+            <div style="display: flex; gap: var(--space-5); align-items: center;">
+              <div style="width: 120px; height: 100px; border-radius: var(--radius-md); overflow: hidden; background: var(--cream); flex-shrink: 0;" id="rdProductImg"></div>
+              <div>
+                <h3 style="font-size: var(--fs-lg); font-weight: 600; margin-bottom: var(--space-2);">Sony Alpha Camera Kit</h3>
+                <p style="font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: var(--space-2);">Professional mirrorless camera with 24-70mm lens kit</p>
+                <a href="product-details.html?id=1" style="font-size: var(--fs-sm); color: var(--violet); font-weight: 500;">View Product →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Timeline -->
+          <div class="rental-timeline">
+            <h3 class="rental-timeline__title">Rental Timeline</h3>
+            <div class="timeline">
+              <div class="timeline__item completed">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Booked</div>
+                <div class="timeline__date">Sep 1, 2026 at 2:30 PM</div>
+              </div>
+              <div class="timeline__item completed">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Preparing</div>
+                <div class="timeline__date">Sep 2, 2026 at 10:00 AM</div>
+              </div>
+              <div class="timeline__item completed">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Delivered</div>
+                <div class="timeline__date">Sep 3, 2026 at 11:45 AM</div>
+              </div>
+              <div class="timeline__item current">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Rental Active</div>
+                <div class="timeline__date">Since Sep 3, 2026</div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Return Due</div>
+                <div class="timeline__date">Sep 8, 2026</div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__dot"></div>
+                <div class="timeline__title">Returned</div>
+                <div class="timeline__date">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Details -->
+          <div class="booking-section">
+            <h2 class="booking-section__title"><span id="calIconRD"></span> Rental Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+              <div>
+                <div style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Start Date</div>
+                <div style="font-size: var(--fs-base); font-weight: 600;">Sep 3, 2026</div>
+              </div>
+              <div>
+                <div style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">End Date</div>
+                <div style="font-size: var(--fs-base); font-weight: 600;">Sep 8, 2026</div>
+              </div>
+              <div>
+                <div style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Duration</div>
+                <div style="font-size: var(--fs-base); font-weight: 600;">5 days</div>
+              </div>
+              <div>
+                <div style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Delivery</div>
+                <div style="font-size: var(--fs-base); font-weight: 600;">Standard Delivery</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Details -->
+          <div class="booking-section">
+            <h2 class="booking-section__title"><span id="ccIconRD"></span> Payment</h2>
+            <div class="price-summary__row"><span class="price-summary__row--label">Rental Cost</span><span class="price-summary__row--value">$175</span></div>
+            <div class="price-summary__row"><span class="price-summary__row--label">Delivery Fee</span><span class="price-summary__row--value">$15</span></div>
+            <div class="price-summary__row"><span class="price-summary__row--label">Service Fee</span><span class="price-summary__row--value">$14</span></div>
+            <div class="price-summary__divider"></div>
+            <div class="price-summary__row price-summary__row--deposit"><span>Security Deposit (refundable)</span><span class="price-summary__row--value">$250</span></div>
+            <div class="price-summary__divider"></div>
+            <div class="price-summary__row price-summary__row--total"><span>Total Charged</span><span>$454</span></div>
+            <p style="font-size: var(--fs-xs); color: var(--text-muted); margin-top: var(--space-3);">Paid via Visa ending in 4242</p>
+          </div>
+        </div>
+
+        <!-- Sidebar Actions -->
+        <div>
+          <div class="rental-detail-actions">
+            <h3 class="rental-detail-actions__title">Actions</h3>
+            <button class="btn btn--primary" onclick="showToast('Rental extension request submitted!', 'success')">Extend Rental</button>
+            <button class="btn btn--outline" onclick="showToast('Support team notified. We\'ll contact you shortly.', 'info')">Contact Support</button>
+            <button class="btn btn--outline">Return Instructions</button>
+            <button class="btn btn--ghost" id="downloadReceipt">
+              <span id="dlIcon"></span> Download Receipt
+            </button>
+          </div>
+
+          <div style="margin-top: var(--space-6);">
+            <div class="booking-section">
+              <h3 style="font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 600; margin-bottom: var(--space-4);">Delivery Address</h3>
+              <p style="font-size: var(--fs-sm); color: var(--text-secondary); line-height: var(--lh-relaxed);">
+                Alex Johnson<br>
+                742 Evergreen Terrace<br>
+                Springfield, IL 62704<br>
+                United States
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+    document.getElementById('rdProductImg').innerHTML = getProductSVG('camera', 120);
+    document.getElementById('pkgIcon').innerHTML = ICONS.package;
+    document.getElementById('calIconRD').innerHTML = ICONS.calendar;
+    document.getElementById('ccIconRD').innerHTML = ICONS.creditCard;
+    document.getElementById('dlIcon').innerHTML = ICONS.download;
+    document.getElementById('downloadReceipt').addEventListener('click', () => showToast('Receipt downloaded!', 'success'));
+  </script>
+</body>
+</html>

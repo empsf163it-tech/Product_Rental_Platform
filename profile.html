@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your Rentivo profile, preferences, and settings.">
+  <title>Profile — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="profile">
+
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-overlay__content"><div class="search-overlay__input-wrap"><span id="searchIcon"></span><input type="text" placeholder="Search..." class="search-overlay__input"><button data-search-close id="searchClose"></button></div><div class="search-overlay__results"></div></div></div>
+
+  <section class="page-title-section">
+    <div class="container">
+      <h1 class="page-title">My Profile</h1>
+      <p class="page-subtitle">Manage your account and preferences.</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <div class="profile-sidebar__avatar">AJ</div>
+          <h3 class="profile-sidebar__name">Alex Johnson</h3>
+          <p class="profile-sidebar__email">alex@example.com</p>
+          <nav class="profile-sidebar__nav">
+            <a href="#" class="profile-sidebar__link active" data-section="sectionPersonal"><span id="pNavUser"></span> Personal Info</a>
+            <a href="#" class="profile-sidebar__link" data-section="sectionAddresses"><span id="pNavMap"></span> Addresses</a>
+            <a href="#" class="profile-sidebar__link" data-section="sectionPayment"><span id="pNavCard"></span> Payment</a>
+            <a href="#" class="profile-sidebar__link" data-section="sectionPrefs"><span id="pNavSettings"></span> Preferences</a>
+            <a href="#" class="profile-sidebar__link" data-section="sectionNotifs"><span id="pNavBell"></span> Notifications</a>
+            <a href="help.html" class="profile-sidebar__link"><span id="pNavHelp"></span> Help</a>
+            <a href="index.html" class="profile-sidebar__link" style="color: var(--danger);"><span id="pNavLogout"></span> Logout</a>
+          </nav>
+        </aside>
+
+        <!-- Content -->
+        <div>
+          <!-- Personal Info -->
+          <div class="profile-section" id="sectionPersonal">
+            <h2 class="profile-section__title">Personal Information</h2>
+            <div class="profile-form-grid">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" value="Alex">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" value="Johnson">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" value="alex@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" value="+1 (555) 123-4567">
+              </div>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-input" value="1992-06-15">
+              </div>
+            </div>
+            <div style="margin-top: var(--space-6); display: flex; justify-content: flex-end;">
+              <button class="btn btn--primary" onclick="showToast('Profile updated successfully!', 'success')">Save Changes</button>
+            </div>
+          </div>
+
+          <!-- Addresses -->
+          <div class="profile-section" id="sectionAddresses" style="display: none;">
+            <h2 class="profile-section__title">Saved Addresses</h2>
+            <div style="padding: var(--space-4); border: 1.5px solid var(--violet); border-radius: var(--radius-md); margin-bottom: var(--space-4); background: var(--violet-soft);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
+                <span style="font-size: var(--fs-sm); font-weight: 600;">Home (Default)</span>
+                <span class="badge badge--violet">Primary</span>
+              </div>
+              <p style="font-size: var(--fs-sm); color: var(--text-secondary);">742 Evergreen Terrace, Springfield, IL 62704</p>
+            </div>
+            <div style="padding: var(--space-4); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <div style="margin-bottom: var(--space-2);">
+                <span style="font-size: var(--fs-sm); font-weight: 600;">Office</span>
+              </div>
+              <p style="font-size: var(--fs-sm); color: var(--text-secondary);">100 Innovation Way, Suite 300, Springfield, IL 62702</p>
+            </div>
+            <button class="btn btn--outline" style="margin-top: var(--space-5);" onclick="showToast('Add address form would open here', 'info')">+ Add New Address</button>
+          </div>
+
+          <!-- Payment -->
+          <div class="profile-section" id="sectionPayment" style="display: none;">
+            <h2 class="profile-section__title">Payment Methods</h2>
+            <div style="padding: var(--space-4); border: 1.5px solid var(--violet); border-radius: var(--radius-md); display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); background: var(--violet-soft);">
+              <div style="width: 48px; height: 32px; background: var(--white); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: var(--fs-xs); font-weight: 700; color: var(--navy);">VISA</div>
+              <div>
+                <div style="font-size: var(--fs-sm); font-weight: 600;">Visa ending in 4242</div>
+                <div style="font-size: var(--fs-xs); color: var(--text-muted);">Expires 12/2028</div>
+              </div>
+              <span class="badge badge--violet" style="margin-left: auto;">Default</span>
+            </div>
+            <button class="btn btn--outline" onclick="showToast('Add payment method form would open here', 'info')">+ Add Payment Method</button>
+          </div>
+
+          <!-- Preferences -->
+          <div class="profile-section" id="sectionPrefs" style="display: none;">
+            <h2 class="profile-section__title">Preferences</h2>
+            <div class="toggle">
+              <span class="toggle__label">Dark Mode</span>
+              <div class="toggle__switch" id="profileDarkToggle"></div>
+            </div>
+            <div class="toggle" style="border-top: 1px solid var(--border-light); margin-top: var(--space-2); padding-top: var(--space-2);">
+              <span class="toggle__label">RTL Layout</span>
+              <div class="toggle__switch" id="profileRTLToggle"></div>
+            </div>
+            <div class="form-group" style="margin-top: var(--space-5);">
+              <label class="form-label">Language</label>
+              <select class="form-select form-input">
+                <option>English</option>
+                <option>العربية (Arabic)</option>
+                <option>Español (Spanish)</option>
+                <option>Français (French)</option>
+                <option>हिन्दी (Hindi)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-top: var(--space-4);">
+              <label class="form-label">Default Rental Duration</label>
+              <select class="form-select form-input">
+                <option>3 days</option>
+                <option>1 week</option>
+                <option>2 weeks</option>
+                <option>1 month</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-top: var(--space-4);">
+              <label class="form-label">Preferred Delivery</label>
+              <select class="form-select form-input">
+                <option>Standard Delivery</option>
+                <option>Express Delivery</option>
+                <option>Store Pickup</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="profile-section" id="sectionNotifs" style="display: none;">
+            <h2 class="profile-section__title">Notification Preferences</h2>
+            <div class="toggle">
+              <span class="toggle__label">Rental status updates</span>
+              <div class="toggle__switch active" onclick="this.classList.toggle('active')"></div>
+            </div>
+            <div class="toggle" style="border-top: 1px solid var(--border-light); margin-top: var(--space-2); padding-top: var(--space-2);">
+              <span class="toggle__label">Return reminders</span>
+              <div class="toggle__switch active" onclick="this.classList.toggle('active')"></div>
+            </div>
+            <div class="toggle" style="border-top: 1px solid var(--border-light); margin-top: var(--space-2); padding-top: var(--space-2);">
+              <span class="toggle__label">New product alerts</span>
+              <div class="toggle__switch" onclick="this.classList.toggle('active')"></div>
+            </div>
+            <div class="toggle" style="border-top: 1px solid var(--border-light); margin-top: var(--space-2); padding-top: var(--space-2);">
+              <span class="toggle__label">Promotional offers</span>
+              <div class="toggle__switch" onclick="this.classList.toggle('active')"></div>
+            </div>
+            <div class="toggle" style="border-top: 1px solid var(--border-light); margin-top: var(--space-2); padding-top: var(--space-2);">
+              <span class="toggle__label">Email notifications</span>
+              <div class="toggle__switch active" onclick="this.classList.toggle('active')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+    document.getElementById('pNavUser').innerHTML = ICONS.user;
+    document.getElementById('pNavMap').innerHTML = ICONS.mapPin;
+    document.getElementById('pNavCard').innerHTML = ICONS.creditCard;
+    document.getElementById('pNavSettings').innerHTML = ICONS.settings;
+    document.getElementById('pNavBell').innerHTML = ICONS.bell;
+    document.getElementById('pNavHelp').innerHTML = ICONS.helpCircle;
+    document.getElementById('pNavLogout').innerHTML = ICONS.logOut;
+  </script>
+</body>
+</html>

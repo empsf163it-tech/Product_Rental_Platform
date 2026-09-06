@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your active, upcoming, and past rental bookings on Rentivo. Track deposit status and manage return timelines.">
+  <title>My Rentals — Rentivo Rental Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="my-rentals">
+
+  <!-- Main Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link active">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__content">
+      <div class="search-overlay__input-wrap">
+        <span id="searchIcon"></span>
+        <input type="text" placeholder="Search rental products..." class="search-overlay__input">
+        <button data-search-close id="searchClose"></button>
+      </div>
+      <div class="search-overlay__results"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard Page Header -->
+  <section class="my-rentals-header">
+    <div class="container">
+      <div class="my-rentals-header__inner">
+        <div>
+          <h1 class="my-rentals-header__title">Rental Dashboard</h1>
+          <p class="my-rentals-header__subtitle">Welcome back, Alex Morgan. Manage your active bookings, return deadlines, and deposit refunds.</p>
+        </div>
+        <div>
+          <a href="browse.html" class="btn btn--primary btn--lg">+ Rent New Item</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Content -->
+  <section class="section-padding">
+    <div class="container">
+      
+      <!-- 1. Stats Overview Section -->
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-card__icon" id="statIconActive"></div>
+          <div>
+            <div class="stat-card__value">2</div>
+            <div class="stat-card__label">Active Rentals</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon" id="statIconDeposit" style="background: var(--gold-soft); color: var(--gold-dark);"></div>
+          <div>
+            <div class="stat-card__value">$450.00</div>
+            <div class="stat-card__label">Deposits Held (Refundable)</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon" id="statIconUpcoming" style="background: var(--info-bg); color: var(--info);"></div>
+          <div>
+            <div class="stat-card__value">1</div>
+            <div class="stat-card__label">Upcoming Delivery</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon" id="statIconCompleted" style="background: var(--success-bg); color: var(--success);"></div>
+          <div>
+            <div class="stat-card__value">3</div>
+            <div class="stat-card__label">Completed Rentals</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Rental Status Tabs -->
+      <div class="tabs" id="rentalTabs">
+        <button class="tab active" data-tab="active">Active Rentals <span class="tab__count">2</span></button>
+        <button class="tab" data-tab="upcoming">Upcoming <span class="tab__count">1</span></button>
+        <button class="tab" data-tab="deposits">Deposits & Holds <span class="tab__count">2</span></button>
+        <button class="tab" data-tab="past">Past & Returned <span class="tab__count">3</span></button>
+        <button class="tab" data-tab="cancelled">Cancelled <span class="tab__count">0</span></button>
+      </div>
+
+      <!-- TAB 1: Active Rentals -->
+      <div class="tab-content active" id="tab-active">
+        
+        <!-- Active Item 1 -->
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg1"></div>
+          <div class="rental-card__info">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-1); flex-wrap:wrap;">
+              <span class="badge badge--orange" style="font-size:10px;">Order #RN-94820</span>
+              <span style="font-size:var(--fs-xs); color:var(--text-muted);">Rental Period: 5 Days</span>
+            </div>
+            <h3 class="rental-card__name">Sony Alpha Camera Kit</h3>
+            <div class="rental-card__dates"><span id="calIconR1"></span> Sep 3, 2026 — Sep 8, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>Rate: $35/day ($175 total)</span>
+            <span style="color:var(--gold-dark); font-weight:var(--fw-semibold);">Deposit: $250.00 Held</span>
+            <span>Method: Doorstep Courier</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--active">Active (2 Days Left)</span>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+              <a href="rental-details.html" class="btn btn--primary btn--sm">View Tracking</a>
+              <button class="btn btn--outline btn--sm" onclick="showToast('Rental extension request sent!', 'success')">Extend Duration</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Item 2 -->
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg2"></div>
+          <div class="rental-card__info">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-1); flex-wrap:wrap;">
+              <span class="badge badge--orange" style="font-size:10px;">Order #RN-94821</span>
+              <span style="font-size:var(--fs-xs); color:var(--text-muted);">Rental Period: 2 Days</span>
+            </div>
+            <h3 class="rental-card__name">Projector Pro 4K</h3>
+            <div class="rental-card__dates"><span id="calIconR2"></span> Sep 5, 2026 — Sep 7, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>Rate: $28/day ($56 total)</span>
+            <span style="color:var(--gold-dark); font-weight:var(--fw-semibold);">Deposit: $200.00 Held</span>
+            <span>Method: Hub Pickup</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--due-soon">Due Tomorrow</span>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+              <a href="rental-details.html" class="btn btn--primary btn--sm">View Tracking</a>
+              <button class="btn btn--outline btn--sm" onclick="showToast('Rental extension request sent!', 'success')">Extend Duration</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: Upcoming Rentals -->
+      <div class="tab-content" id="tab-upcoming">
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg3"></div>
+          <div class="rental-card__info">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-1); flex-wrap:wrap;">
+              <span class="badge badge--orange" style="font-size:10px;">Order #RN-95012</span>
+              <span style="font-size:var(--fs-xs); color:var(--text-muted);">Starts Sep 12</span>
+            </div>
+            <h3 class="rental-card__name">Party Speaker System</h3>
+            <div class="rental-card__dates"><span id="calIconR3"></span> Sep 12, 2026 — Sep 14, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>2 Days ($60 total)</span>
+            <span>Deposit: $175.00 Scheduled</span>
+            <span>Method: Scheduled Delivery</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--reserved">Confirmed Reserved</span>
+            <a href="rental-details.html" class="btn btn--outline btn--sm">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Deposits & Holds -->
+      <div class="tab-content" id="tab-deposits">
+        <div class="card" style="padding:var(--space-6); margin-bottom:var(--space-4);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-4);">
+            <div>
+              <h3 style="font-family:var(--font-heading); font-size:var(--fs-xl); color:var(--black); margin-bottom:var(--space-1);">Sony Alpha Camera Kit Deposit</h3>
+              <p style="font-size:var(--fs-sm); color:var(--text-muted);">Order #RN-94820 • Held on Visa ending in •••• 4920</p>
+            </div>
+            <div style="text-align:right;">
+              <span class="badge badge--pending" style="font-size:var(--fs-sm);">$250.00 Held</span>
+              <div style="font-size:var(--fs-xs); color:var(--text-muted); margin-top:var(--space-1);">Auto-release within 24h of return</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:var(--space-6);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-4);">
+            <div>
+              <h3 style="font-family:var(--font-heading); font-size:var(--fs-xl); color:var(--black); margin-bottom:var(--space-1);">Projector Pro 4K Deposit</h3>
+              <p style="font-size:var(--fs-sm); color:var(--text-muted);">Order #RN-94821 • Held on Mastered ending in •••• 1048</p>
+            </div>
+            <div style="text-align:right;">
+              <span class="badge badge--pending" style="font-size:var(--fs-sm);">$200.00 Held</span>
+              <div style="font-size:var(--fs-xs); color:var(--text-muted); margin-top:var(--space-1);">Auto-release within 24h of return</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: Past & Returned -->
+      <div class="tab-content" id="tab-past">
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg4"></div>
+          <div class="rental-card__info">
+            <h3 class="rental-card__name">Designer Lounge Chair</h3>
+            <div class="rental-card__dates"><span id="calIconR4"></span> Aug 15, 2026 — Aug 22, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>7 days ($95 rental)</span>
+            <span style="color:var(--success); font-weight:var(--fw-semibold);">Deposit: $150 (Fully Refunded)</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--returned">Returned & Inspected</span>
+            <a href="browse.html" class="btn btn--outline btn--sm">Rent Again</a>
+          </div>
+        </div>
+
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg5"></div>
+          <div class="rental-card__info">
+            <h3 class="rental-card__name">Power Drill Set</h3>
+            <div class="rental-card__dates"><span id="calIconR5"></span> Aug 1, 2026 — Aug 3, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>2 days ($30 rental)</span>
+            <span style="color:var(--success); font-weight:var(--fw-semibold);">Deposit: $120 (Fully Refunded)</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--returned">Returned & Inspected</span>
+            <a href="browse.html" class="btn btn--outline btn--sm">Rent Again</a>
+          </div>
+        </div>
+
+        <div class="rental-card">
+          <div class="rental-card__image" id="rentalImg6"></div>
+          <div class="rental-card__info">
+            <h3 class="rental-card__name">Camping Tent 4-Person</h3>
+            <div class="rental-card__dates"><span id="calIconR6"></span> Jul 20, 2026 — Jul 27, 2026</div>
+          </div>
+          <div class="rental-card__meta-row">
+            <span>7 days ($120 rental)</span>
+            <span style="color:var(--success); font-weight:var(--fw-semibold);">Deposit: $100 (Fully Refunded)</span>
+          </div>
+          <div class="rental-card__actions">
+            <span class="badge badge--returned">Returned & Inspected</span>
+            <a href="browse.html" class="btn btn--outline btn--sm">Rent Again</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: Cancelled -->
+      <div class="tab-content" id="tab-cancelled">
+        <div style="text-align: center; padding: var(--space-16) 0; color: var(--text-muted);">
+          <p style="font-size: var(--fs-lg); margin-bottom: var(--space-3); color:var(--text-primary); font-family:var(--font-heading);">No Cancelled Rentals</p>
+          <p style="font-size: var(--fs-sm);">You currently have zero cancelled bookings on record.</p>
+        </div>
+      </div>
+
+      <!-- 3. Security Deposit & Damage Protection Banner -->
+      <div class="deposit-guarantee-banner">
+        <div class="deposit-guarantee-banner__content">
+          <h3 class="deposit-guarantee-banner__title">
+            <span id="shieldIconBanner"></span> 100% Refundable Security Deposit Guarantee
+          </h3>
+          <p class="deposit-guarantee-banner__text">All security deposits are safely held in escrow and released automatically back to your payment method within 24 to 48 hours after item return inspection. Free return shipping and dropoff available across all Rentivo hubs.</p>
+        </div>
+        <div>
+          <a href="help.html" class="btn btn--gold btn--md">Learn Rental Policies</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to Rentivo Updates</h3>
+          <p class="footer__newsletter-text">Get notified about new high-demand rental items, promo codes, and priority booking windows.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Search Catalog</a>
+            <a href="browse.html" class="footer__link">Popular Categories</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Dashboard</a>
+            <a href="favorites.html" class="footer__link">Saved Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Return Guidelines</a>
+            <a href="help.html" class="footer__link">Deposit Refunds</a>
+            <a href="help.html" class="footer__link">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About Rentivo</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo Platform. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Security & Deposits</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    
+    // Social icons
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+
+    // Stat Icons
+    document.getElementById('statIconActive').innerHTML = ICONS.clock;
+    document.getElementById('statIconDeposit').innerHTML = ICONS.shield;
+    document.getElementById('statIconUpcoming').innerHTML = ICONS.truck;
+    document.getElementById('statIconCompleted').innerHTML = ICONS.check;
+    document.getElementById('shieldIconBanner').innerHTML = ICONS.shield;
+
+    // Product Images
+    document.getElementById('rentalImg1').innerHTML = getProductSVG('camera', 120);
+    document.getElementById('rentalImg2').innerHTML = getProductSVG('projector', 120);
+    document.getElementById('rentalImg3').innerHTML = getProductSVG('speaker', 120);
+    document.getElementById('rentalImg4').innerHTML = getProductSVG('chair', 120);
+    document.getElementById('rentalImg5').innerHTML = getProductSVG('drill', 120);
+    document.getElementById('rentalImg6').innerHTML = getProductSVG('tent', 120);
+    ['calIconR1','calIconR2','calIconR3','calIconR4','calIconR5','calIconR6'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = ICONS.calendar;
+    });
+  </script>
+</body>
+</html>

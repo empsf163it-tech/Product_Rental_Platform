@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse and discover rental products on Rentivo. Filter by category, price, availability, and rental duration.">
+  <title>Browse Products — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="browse">
+
+  <!-- Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link active">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__content">
+      <div class="search-overlay__input-wrap">
+        <span id="searchIcon"></span>
+        <input type="text" placeholder="Search products, categories..." class="search-overlay__input">
+        <button data-search-close id="searchClose"></button>
+      </div>
+      <div class="search-overlay__results"></div>
+    </div>
+  </div>
+
+  <!-- Browse Header -->
+  <section class="browse-header">
+    <div class="container">
+      <h1 class="browse-header__title">Browse Products</h1>
+      <p class="browse-header__count" id="resultCount">12 products</p>
+    </div>
+  </section>
+
+  <!-- Browse Content -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="browse-layout">
+        <!-- Filter Panel -->
+        <aside class="filter-panel" id="filterPanel">
+          <div class="filter-panel__title">
+            Filters
+            <button class="btn btn--ghost btn--sm" id="clearFilters">Clear All</button>
+          </div>
+
+          <div class="filter-section">
+            <div class="filter-section__title">Category <span id="catChevron"></span></div>
+            <div class="filter-section__content">
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Electronics"> Electronics</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Furniture"> Furniture</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Cameras"> Cameras</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Fashion"> Fashion</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Events"> Events</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Tools"> Tools</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Outdoor"> Outdoor</label>
+              <label class="filter-checkbox"><input type="checkbox" class="filter-cat" value="Appliances"> Appliances</label>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <div class="filter-section__title">Price Per Day <span id="priceChevron"></span></div>
+            <div class="filter-section__content">
+              <div class="filter-range">
+                <input type="range" id="priceRange" min="5" max="60" value="60" step="5">
+                <span class="filter-range__value" id="priceRangeValue">$60</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <div class="filter-section__title">Availability <span id="availChevron"></span></div>
+            <div class="filter-section__content">
+              <label class="filter-checkbox"><input type="checkbox" id="filterAvailable"> Available Now</label>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <div class="filter-section__title">Rating <span id="ratingChevron"></span></div>
+            <div class="filter-section__content">
+              <label class="filter-checkbox"><input type="checkbox" id="filterRating"> 4.5+ Stars</label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Products -->
+        <div>
+          <div class="sort-bar">
+            <button class="btn btn--outline btn--sm filter-toggle-btn" id="filterToggle">
+              <span id="filterIcon"></span> Filters
+            </button>
+            <div class="sort-bar__controls">
+              <select class="sort-bar__select" id="browseSort">
+                <option value="recommended">Recommended</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="popular">Most Popular</option>
+                <option value="recent">Recently Added</option>
+              </select>
+            </div>
+          </div>
+          <div class="products-grid products-grid--3" id="browseProducts"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+    document.getElementById('filterIcon').innerHTML = ICONS.filter;
+    document.querySelectorAll('.filter-section__title span').forEach(s => s.innerHTML = ICONS.chevronDown);
+  </script>
+</body>
+</html>

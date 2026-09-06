@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get help with your Rentivo rentals. FAQs about deposits, returns, delivery, cancellations, and more.">
+  <title>Help Center — Rentivo</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dark-mode.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body data-page="help">
+
+  <header class="header" id="mainHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" id="headerLogo"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="browse.html" class="header__nav-link">Search & Browse</a>
+        <a href="my-rentals.html" class="header__nav-link">My Rentals</a>
+        <a href="help.html" class="header__nav-link active">Help</a>
+      </nav>
+      <div class="header__actions">
+        <a href="favorites.html" class="header__action-btn" title="Favorites" id="headerFav"><span class="header__badge fav-count" style="display:none">0</span></a>
+        <a href="cart.html" class="header__action-btn" title="Rental Bag" id="headerBag"><span class="header__badge bag-count" style="display:none">0</span></a>
+        <a href="profile.html" class="header__action-btn" title="Profile" id="headerProfile"></a>
+        <button class="header__mobile-toggle" id="mobileMenuToggle"></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavHome"></span> Home
+      </a>
+      <a href="browse.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavBrowse"></span> Search & Browse
+      </a>
+      <a href="my-rentals.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavRentals"></span> My Rentals
+      </a>
+      <a href="favorites.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavFav"></span> Favorites
+        <span class="mobile-menu__badge fav-count" style="display:none">0</span>
+      </a>
+      <a href="cart.html" class="mobile-menu__link">
+        <span class="mobile-menu__icon" id="mobNavCart"></span> Rental Bag
+        <span class="mobile-menu__badge bag-count" style="display:none">0</span>
+      </a>
+      <a href="help.html" class="mobile-menu__link active">
+        <span class="mobile-menu__icon" id="mobNavHelp"></span> Help
+      </a>
+    </nav>
+    <div class="mobile-menu__divider"></div>
+    <div class="mobile-menu__footer">
+      <a href="profile.html" class="btn btn--outline btn--full mobile-menu__action-btn">
+        <span id="mobBtnProfile"></span> My Account
+      </a>
+      <div class="mobile-menu__quick-actions">
+        <a href="favorites.html" class="btn btn--secondary btn--full mobile-menu__action-btn">
+          <span id="mobBtnFav"></span> Favorites
+        </a>
+        <a href="cart.html" class="btn btn--primary btn--full mobile-menu__action-btn">
+          <span id="mobBtnBag"></span> Rental Bag
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-overlay__content"><div class="search-overlay__input-wrap"><span id="searchIcon"></span><input type="text" placeholder="Search..." class="search-overlay__input"><button data-search-close id="searchClose"></button></div><div class="search-overlay__results"></div></div></div>
+
+  <!-- Help Hero -->
+  <section class="help-hero">
+    <div class="container">
+      <h1 class="help-hero__title">How can we help?</h1>
+      <p class="help-hero__subtitle">Find answers to common questions about renting, deposits, returns, and more.</p>
+      <div class="help-search">
+        <span id="helpSearchIcon"></span>
+        <input type="text" placeholder="Search for help topics..." id="helpSearchInput">
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Topics -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="help-topics" id="helpTopics">
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon1"></div>
+          <h3 class="help-topic-card__title">How Rentals Work</h3>
+          <p class="help-topic-card__desc">Learn the basics of browsing, booking, and managing your rentals.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon2"></div>
+          <h3 class="help-topic-card__title">Deposits</h3>
+          <p class="help-topic-card__desc">Understand security deposits, holds, and refund timelines.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon3"></div>
+          <h3 class="help-topic-card__title">Returns</h3>
+          <p class="help-topic-card__desc">How to return products, condition requirements, and late returns.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon4"></div>
+          <h3 class="help-topic-card__title">Delivery & Pickup</h3>
+          <p class="help-topic-card__desc">Delivery options, timelines, tracking, and pickup locations.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon5"></div>
+          <h3 class="help-topic-card__title">Cancellations</h3>
+          <p class="help-topic-card__desc">Cancellation policies, timeframes, and refund processes.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon6"></div>
+          <h3 class="help-topic-card__title">Damage Policy</h3>
+          <p class="help-topic-card__desc">What happens if a product is damaged during your rental.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon7"></div>
+          <h3 class="help-topic-card__title">Refunds</h3>
+          <p class="help-topic-card__desc">Refund eligibility, processing times, and payment methods.</p>
+        </div>
+        <div class="help-topic-card">
+          <div class="help-topic-card__icon" id="topicIcon8"></div>
+          <h3 class="help-topic-card__title">Account & Security</h3>
+          <p class="help-topic-card__desc">Managing your account, password, and security settings.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="margin-top: var(--space-16);">
+        <div class="section-header text-center">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Quick answers to the most common questions.</p>
+        </div>
+
+        <div class="accordion" style="max-width: 800px; margin: 0 auto;">
+          <div class="accordion__item open">
+            <button class="accordion__trigger">
+              How does renting work on Rentivo?
+              <span id="faqChev1"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                Renting on Rentivo is simple: browse our catalog, select a product, choose your rental dates, and complete your booking. We'll deliver the product to your door (or you can pick it up). When your rental period is over, return the product and your security deposit will be refunded.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              What is the security deposit?
+              <span id="faqChev2"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                The security deposit is a refundable amount held during your rental period. It protects against damage or loss. The deposit is returned in full once the product is returned in good condition. Deposit amounts vary by product and are clearly shown before booking.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              How do I return a rental product?
+              <span id="faqChev3"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                You can return your rental by scheduling a pickup through your My Rentals page, or by dropping it off at any Rentivo hub location. Returns must be made by the end of your rental period. Late returns may incur additional daily charges.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              Can I extend my rental period?
+              <span id="faqChev4"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                Yes! You can extend your rental directly from the Rental Details page. Click "Extend Rental" and select your new end date. Extension pricing is calculated at the same daily/weekly rate. Extensions are subject to product availability.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              What delivery options are available?
+              <span id="faqChev5"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                We offer three delivery options: Standard Delivery (2-3 business days, $15), Express Delivery (next business day, $30), and Store Pickup (free, at your nearest Rentivo hub). All delivery options include tracking so you know exactly when your rental will arrive.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              What happens if I cancel my booking?
+              <span id="faqChev6"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                Cancellations made 48+ hours before the rental start date receive a full refund. Cancellations within 24-48 hours receive a 50% refund. Cancellations within 24 hours of the start date are non-refundable. Security deposits are always refunded in full upon cancellation.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              What if the product is damaged?
+              <span id="faqChev7"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                Normal wear and tear is expected and covered. For significant damage, repair costs will be deducted from your security deposit. If repair costs exceed the deposit, you'll be charged the difference. We recommend handling all products with reasonable care and reporting any issues immediately.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__trigger">
+              How long does it take to get my deposit back?
+              <span id="faqChev8"></span>
+            </button>
+            <div class="accordion__content">
+              <div class="accordion__body">
+                Once the product is returned and inspected (typically within 24 hours), your deposit refund will be initiated. Credit card refunds usually appear within 5-7 business days. UPI and wallet refunds are typically processed within 2-3 business days.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="help-cta" data-animate>
+        <h2 class="help-cta__title">Need help with a rental?</h2>
+        <p class="help-cta__text">Our support team is available 7 days a week to help you with any questions or issues.</p>
+        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn--primary btn--lg" onclick="showToast('Live chat would open here', 'info')">
+            <span id="ctaChat"></span> Start Live Chat
+          </button>
+          <button class="btn btn--outline btn--lg" onclick="showToast('Email: support@rentivo.com', 'info')">
+            <span id="ctaEmail"></span> Email Support
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__newsletter">
+        <div>
+          <h3 class="footer__newsletter-title">Subscribe to our newsletter</h3>
+          <p class="footer__newsletter-text">Get the latest updates on new products and upcoming sales.</p>
+        </div>
+        <form class="footer__newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" class="footer__newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <div class="footer__logo-text" id="footerLogo"></div>
+          <p class="footer__tagline">Rent premium products with confidence. Flexible periods, secure deposits, and hassle-free returns.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Instagram" id="socialInstagram"></a>
+            <a href="#" class="footer__social-btn" aria-label="Twitter" id="socialTwitter"></a>
+            <a href="#" class="footer__social-btn" aria-label="Facebook" id="socialFacebook"></a>
+            <a href="#" class="footer__social-btn" aria-label="LinkedIn" id="socialLinkedin"></a>
+            <a href="#" class="footer__social-btn" aria-label="YouTube" id="socialYoutube"></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Explore</h4>
+          <div class="footer__links">
+            <a href="browse.html" class="footer__link">Browse Products</a>
+            <a href="index.html" class="footer__link">How It Works</a>
+            <a href="index.html" class="footer__link">Collections</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Rentals</h4>
+          <div class="footer__links">
+            <a href="my-rentals.html" class="footer__link">My Rentals</a>
+            <a href="favorites.html" class="footer__link">Favorites</a>
+            <a href="cart.html" class="footer__link">Rental Bag</a>
+            <a href="checkout.html" class="footer__link">Checkout</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <div class="footer__links">
+            <a href="help.html" class="footer__link">Help Center</a>
+            <a href="help.html" class="footer__link">Returns</a>
+            <a href="help.html" class="footer__link">Deposits</a>
+            <a href="help.html" class="footer__link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Company</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">About</a>
+            <a href="#" class="footer__link">Careers</a>
+            <a href="#" class="footer__link">Press</a>
+            <a href="#" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Rentivo. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('headerLogo').innerHTML = getRentivoLogo();
+    document.getElementById('headerFav').insertAdjacentHTML('afterbegin', ICONS.heart);
+    document.getElementById('headerBag').insertAdjacentHTML('afterbegin', ICONS.bag);
+    document.getElementById('headerProfile').innerHTML = ICONS.user;
+    document.getElementById('mobileMenuToggle').innerHTML = ICONS.menu;
+    document.getElementById('searchIcon').innerHTML = ICONS.search;
+    document.getElementById('searchClose').innerHTML = ICONS.x;
+    document.getElementById('footerLogo').innerHTML = getRentivoLogo(true);
+    const socInsta = document.getElementById('socialInstagram'); if(socInsta) socInsta.innerHTML = ICONS.instagram;
+    const socTwit = document.getElementById('socialTwitter'); if(socTwit) socTwit.innerHTML = ICONS.twitter;
+    const socFb = document.getElementById('socialFacebook'); if(socFb) socFb.innerHTML = ICONS.facebook;
+    const socLinked = document.getElementById('socialLinkedin'); if(socLinked) socLinked.innerHTML = ICONS.linkedin;
+    const socYt = document.getElementById('socialYoutube'); if(socYt) socYt.innerHTML = ICONS.youtube;
+    document.getElementById('helpSearchIcon').innerHTML = ICONS.search;
+    document.getElementById('topicIcon1').innerHTML = ICONS.package;
+    document.getElementById('topicIcon2').innerHTML = ICONS.shield;
+    document.getElementById('topicIcon3').innerHTML = ICONS.refresh;
+    document.getElementById('topicIcon4').innerHTML = ICONS.truck;
+    document.getElementById('topicIcon5').innerHTML = ICONS.x;
+    document.getElementById('topicIcon6').innerHTML = ICONS.helpCircle;
+    document.getElementById('topicIcon7').innerHTML = ICONS.creditCard;
+    document.getElementById('topicIcon8').innerHTML = ICONS.settings;
+    document.getElementById('ctaChat').innerHTML = ICONS.phone;
+    document.getElementById('ctaEmail').innerHTML = ICONS.mail;
+    document.querySelectorAll('[id^="faqChev"]').forEach(el => el.innerHTML = ICONS.chevronDown);
+  </script>
+</body>
+</html>

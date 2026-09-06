@@ -1,0 +1,401 @@
+/* ============================================
+   RENTIVO — RTL Support
+   Right-to-left layout mirroring
+   ============================================ */
+
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Header */
+body.rtl .header__inner {
+  flex-direction: row-reverse;
+}
+
+body.rtl .header__nav {
+  flex-direction: row-reverse;
+}
+
+body.rtl .header__actions {
+  flex-direction: row-reverse;
+}
+
+body.rtl .header__badge {
+  right: auto;
+  left: 4px;
+}
+
+/* Mobile menu */
+body.rtl .mobile-menu {
+  transform: translateX(-100%);
+}
+
+body.rtl .mobile-menu.open {
+  transform: translateX(0);
+}
+
+body.rtl .mobile-menu__link {
+  flex-direction: row-reverse;
+}
+
+/* Hero */
+body.rtl .hero__inner {
+  direction: rtl;
+}
+
+/* Search */
+body.rtl .rental-search__form {
+  direction: rtl;
+}
+
+body.rtl .search-overlay__input-wrap {
+  flex-direction: row-reverse;
+}
+
+body.rtl .search-result-item {
+  flex-direction: row-reverse;
+}
+
+/* Product cards */
+body.rtl .product-card__favorite {
+  right: auto;
+  left: var(--space-3);
+}
+
+body.rtl .product-card__badge {
+  left: auto;
+  right: var(--space-3);
+}
+
+body.rtl .product-card__meta {
+  flex-direction: row-reverse;
+}
+
+/* Browse */
+body.rtl .browse-layout {
+  direction: rtl;
+}
+
+body.rtl .filter-panel {
+  order: 2;
+}
+
+body.rtl .sort-bar {
+  flex-direction: row-reverse;
+}
+
+body.rtl .sort-bar__controls {
+  flex-direction: row-reverse;
+}
+
+body.rtl .form-select,
+body.rtl .sort-bar__select {
+  background-position: left 12px center;
+  padding-left: 36px;
+  padding-right: var(--space-4);
+  text-align: right;
+}
+
+/* Filter */
+body.rtl .filter-checkbox {
+  flex-direction: row-reverse;
+}
+
+body.rtl .filter-section__title {
+  flex-direction: row-reverse;
+}
+
+body.rtl .filter-range {
+  flex-direction: row-reverse;
+}
+
+body.rtl .filter-range__value {
+  text-align: left;
+}
+
+/* Breadcrumb */
+body.rtl .product-detail__breadcrumb {
+  flex-direction: row-reverse;
+}
+
+body.rtl .product-detail__breadcrumb svg {
+  transform: scaleX(-1);
+}
+
+/* Product detail */
+body.rtl .product-detail__layout {
+  direction: rtl;
+}
+
+body.rtl .product-gallery__nav-btn--prev {
+  left: auto;
+  right: var(--space-4);
+}
+
+body.rtl .product-gallery__nav-btn--next {
+  right: auto;
+  left: var(--space-4);
+}
+
+body.rtl .product-gallery__nav-btn--prev svg,
+body.rtl .product-gallery__nav-btn--next svg {
+  transform: scaleX(-1);
+}
+
+body.rtl .product-info__price-row {
+  flex-direction: row-reverse;
+}
+
+body.rtl .product-info__rating {
+  flex-direction: row-reverse;
+}
+
+body.rtl .product-info__availability {
+  flex-direction: row-reverse;
+}
+
+/* Calendar */
+body.rtl .calendar__header {
+  flex-direction: row-reverse;
+}
+
+body.rtl .calendar__nav {
+  flex-direction: row-reverse;
+}
+
+body.rtl .calendar__nav-btn svg {
+  transform: scaleX(-1);
+}
+
+body.rtl .calendar__legend {
+  flex-direction: row-reverse;
+}
+
+body.rtl .calendar__legend-item {
+  flex-direction: row-reverse;
+}
+
+body.rtl .calendar__day--range-start {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+body.rtl .calendar__day--range-end {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+/* Availability */
+body.rtl .availability-layout {
+  direction: rtl;
+}
+
+body.rtl .availability-product {
+  flex-direction: row-reverse;
+}
+
+/* Price summary */
+body.rtl .price-summary__row {
+  flex-direction: row-reverse;
+}
+
+/* Booking */
+body.rtl .booking-layout {
+  direction: rtl;
+}
+
+body.rtl .booking-section__title {
+  flex-direction: row-reverse;
+}
+
+body.rtl .delivery-option-card {
+  flex-direction: row-reverse;
+}
+
+body.rtl .delivery-options {
+  direction: rtl;
+}
+
+/* My Rentals */
+body.rtl .rental-card {
+  direction: rtl;
+}
+
+body.rtl .rental-card__dates {
+  flex-direction: row-reverse;
+}
+
+body.rtl .rental-card__meta-row {
+  flex-direction: row-reverse;
+}
+
+body.rtl .rental-card__actions {
+  align-items: flex-start;
+}
+
+/* Rental Details */
+body.rtl .rental-detail-layout {
+  direction: rtl;
+}
+
+/* Timeline */
+body.rtl .timeline {
+  padding-left: 0;
+  padding-right: var(--space-10);
+}
+
+body.rtl .timeline::before {
+  left: auto;
+  right: 15px;
+}
+
+body.rtl .timeline__dot {
+  left: auto;
+  right: calc(-1 * var(--space-10) + 8px);
+}
+
+/* Rental Bag */
+body.rtl .bag-layout {
+  direction: rtl;
+}
+
+body.rtl .bag-item {
+  direction: rtl;
+}
+
+body.rtl .bag-item__pricing {
+  text-align: left;
+}
+
+/* Checkout */
+body.rtl .checkout-layout {
+  direction: rtl;
+}
+
+body.rtl .checkout-progress {
+  flex-direction: row-reverse;
+}
+
+body.rtl .checkout-step {
+  flex-direction: row-reverse;
+}
+
+body.rtl .payment-method {
+  flex-direction: row-reverse;
+}
+
+/* Profile */
+body.rtl .profile-layout {
+  direction: rtl;
+}
+
+body.rtl .profile-sidebar__link {
+  flex-direction: row-reverse;
+}
+
+body.rtl .profile-sidebar__nav {
+  text-align: right;
+}
+
+/* Help */
+body.rtl .help-search {
+  flex-direction: row-reverse;
+}
+
+body.rtl .accordion__trigger {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Tabs */
+body.rtl .tabs {
+  flex-direction: row-reverse;
+}
+
+body.rtl .tab__count {
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+/* Footer */
+body.rtl .footer__grid {
+  direction: rtl;
+}
+
+body.rtl .footer__bottom {
+  flex-direction: row-reverse;
+}
+
+body.rtl .footer__bottom-links {
+  flex-direction: row-reverse;
+}
+
+/* Toast */
+body.rtl .toast-container {
+  right: auto;
+  left: var(--space-6);
+}
+
+body.rtl .toast {
+  flex-direction: row-reverse;
+  transform: translateX(-120%);
+}
+
+body.rtl .toast.show {
+  transform: translateX(0);
+}
+
+/* Toggle switch */
+body.rtl .toggle {
+  flex-direction: row-reverse;
+}
+
+body.rtl .toggle__switch::after {
+  left: auto;
+  right: 3px;
+}
+
+body.rtl .toggle__switch.active::after {
+  transform: translateX(-22px);
+}
+
+/* Steps grid */
+body.rtl .steps-grid {
+  direction: rtl;
+}
+
+/* Trust */
+body.rtl .trust-grid {
+  direction: rtl;
+}
+
+/* Collections */
+body.rtl .collections-grid {
+  direction: rtl;
+}
+
+/* Buttons with icons */
+body.rtl .btn {
+  flex-direction: row-reverse;
+}
+
+/* Duration pills */
+body.rtl .duration-pills {
+  flex-direction: row-reverse;
+}
+
+/* General flex utilities RTL */
+body.rtl .justify-between {
+  flex-direction: row-reverse;
+}
+
+/* Mobile RTL adjustments */
+@media (max-width: 768px) {
+  body.rtl .toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+  }
+
+  body.rtl .rental-card__actions {
+    flex-direction: row-reverse;
+  }
+}
