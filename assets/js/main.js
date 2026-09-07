@@ -95,6 +95,7 @@ const ICONS = {
   chevronLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
   chevronRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>',
   chevronDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+  arrowUp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>',
   star: '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
   calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
@@ -194,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBagCount();
   updateFavCount();
   initToastContainer();
+  initBackToTop();
 
   // Initialize page-specific features
   const page = document.body.dataset.page;
@@ -712,6 +714,60 @@ function initScrollAnimations() {
   document.querySelectorAll('[data-animate]').forEach(el => {
     el.style.opacity = '0';
     observer.observe(el);
+  });
+}
+
+// ── Back to Top ──
+function initBackToTop() {
+  let btn = document.getElementById('backToTop');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'backToTop';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.setAttribute('title', 'Back to top');
+    btn.innerHTML = `
+      <svg class="back-to-top__progress" width="48" height="48" viewBox="0 0 48 48">
+        <circle class="back-to-top__progress-bg" cx="24" cy="24" r="20" fill="none" stroke-width="3"/>
+        <circle class="back-to-top__progress-bar" cx="24" cy="24" r="20" fill="none" stroke-width="3"/>
+      </svg>
+      <span class="back-to-top__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </span>
+    `;
+    document.body.appendChild(btn);
+  }
+
+  const progressBar = btn.querySelector('.back-to-top__progress-bar');
+
+  function updateScrollProgress() {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (scrollY > 250) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+
+    if (progressBar && docHeight > 0) {
+      const progress = Math.min(Math.max(scrollY / docHeight, 0), 1);
+      const dashoffset = 125.66 - (progress * 125.66);
+      progressBar.style.strokeDashoffset = dashoffset;
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
 }
 

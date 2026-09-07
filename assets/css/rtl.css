@@ -44,6 +44,11 @@ body.rtl .hero__inner {
   direction: rtl;
 }
 
+body.rtl .hero__floating-card {
+  left: auto;
+  right: -14px;
+}
+
 /* Search */
 body.rtl .rental-search__form {
   direction: rtl;
@@ -399,3 +404,17 @@ body.rtl .justify-between {
     flex-direction: row-reverse;
   }
 }
+
+/* Back to Top RTL */
+body.rtl .back-to-top {
+  right: auto;
+  left: 28px;
+}
+
+@media (max-width: 768px) {
+  body.rtl .back-to-top {
+    right: auto;
+    left: 20px;
+  }
+}
+

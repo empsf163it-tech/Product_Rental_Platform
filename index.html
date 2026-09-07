@@ -93,12 +93,32 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
-        <h1 class="hero__title">Rent what you need. Return when you're done.</h1>
+        <div class="hero__tag">
+          <span class="hero__tag-dot"></span> Premier Product Rental Platform
+        </div>
+        <h1 class="hero__title">Rent what you need.<br>Return when you're done.</h1>
         <p class="hero__subtitle">Quality products for a day, a week, or as long as you need them. From cameras to furniture — discover, reserve, and enjoy.</p>
+        <div class="hero__actions">
           <a href="browse.html" class="btn btn--primary btn--lg">Search & Browse Catalog</a>
+          <a href="help.html" class="btn btn--outline btn--lg">How It Works</a>
+        </div>
+        <div class="hero__features">
+          <span class="hero__feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Verified Gear</span>
+          <span class="hero__feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Flexible Duration</span>
+          <span class="hero__feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Instant Booking</span>
+        </div>
       </div>
       <div class="hero__visual">
         <div class="hero__image-wrapper" id="heroImage"></div>
+        <div class="hero__floating-card">
+          <div class="hero__floating-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <div class="hero__floating-title">4.9 / 5 Rating</div>
+            <div class="hero__floating-sub">2,400+ Verified Rentals</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -277,6 +297,19 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg class="back-to-top__progress" width="48" height="48" viewBox="0 0 48 48">
+      <circle class="back-to-top__progress-bg" cx="24" cy="24" r="20" fill="none" stroke-width="3"/>
+      <circle class="back-to-top__progress-bar" cx="24" cy="24" r="20" fill="none" stroke-width="3"/>
+    </svg>
+    <span class="back-to-top__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </span>
+  </button>
+
   <script src="assets/js/main.js"></script>
   <script>
     // Populate header icons
@@ -289,7 +322,7 @@
     document.getElementById('searchClose').innerHTML = ICONS.x;
 
     // Hero image
-    document.getElementById('heroImage').innerHTML = getProductSVG('camera', 480);
+    document.getElementById('heroImage').innerHTML = getProductSVG('camera', 360);
 
     // Categories
     const catsHTML = CATEGORIES.map(c => `
@@ -307,16 +340,16 @@
 
     // Collections
     const collections = [
-      { name: 'Weekend Essentials', count: 24, type: 'camera' },
-      { name: 'Event Ready', count: 18, type: 'speaker' },
-      { name: 'Work From Anywhere', count: 15, type: 'projector' },
-      { name: 'Outdoor Adventures', count: 22, type: 'tent' },
-      { name: 'Home Refresh', count: 19, type: 'chair' },
-      { name: 'Creator Kit', count: 12, type: 'mirrorless' },
+      { name: 'Weekend Essentials', count: 24, img: 'assets/images/WeekendRentals.jfif' },
+      { name: 'Event Ready', count: 18, img: 'assets/images/EventRentals.jfif' },
+      { name: 'Work From Anywhere', count: 15, img: 'assets/images/WorkFromAnyWhere.jfif' },
+      { name: 'Outdoor Adventures', count: 22, img: 'assets/images/OutDoorAdvent.jfif' },
+      { name: 'Home Refresh', count: 19, img: 'assets/images/Refresh.jfif' },
+      { name: 'Creator Kit', count: 12, img: 'assets/images/CreatorKit.jfif' },
     ];
     document.getElementById('collectionsGrid').innerHTML = collections.map(c => `
       <a href="browse.html" class="collection-card">
-        <div class="collection-card__bg">${getProductSVG(c.type, 400)}</div>
+        <div class="collection-card__bg"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>
         <div class="collection-card__overlay"></div>
         <div class="collection-card__content">
           <h3 class="collection-card__name">${c.name}</h3>

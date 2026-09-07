@@ -64,11 +64,22 @@ body.dark-mode .header__logo-text {
 
 /* Hero */
 body.dark-mode .hero {
-  background: linear-gradient(135deg, #0f1225 0%, #1a1f36 50%, rgba(108, 92, 231, 0.08) 100%);
+  background: linear-gradient(135deg, #0a0a0d 0%, #121217 50%, rgba(255, 87, 34, 0.06) 100%);
 }
 
 body.dark-mode .hero__title {
   color: var(--text-primary);
+}
+
+body.dark-mode .hero__tag {
+  background: rgba(255, 87, 34, 0.15);
+  border-color: rgba(255, 87, 34, 0.3);
+  color: #ff784e;
+}
+
+body.dark-mode .hero__floating-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
 }
 
 /* Category tiles */
@@ -222,22 +233,15 @@ body.dark-mode .delivery-option-card.active {
 }
 
 /* Scrollbar */
+body.dark-mode {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 body.dark-mode ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-body.dark-mode ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-body.dark-mode ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 4px;
-}
-
-body.dark-mode ::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-400);
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Modal */
@@ -271,3 +275,23 @@ body.dark-mode .sort-bar__select {
 body.dark-mode .filter-panel {
   background: var(--bg-secondary);
 }
+
+/* Back to Top Dark Mode */
+body.dark-mode .back-to-top {
+  background: var(--bg-card, #18181e);
+  color: var(--orange, #ff5722);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .back-to-top:hover {
+  background: var(--orange, #ff5722);
+  color: #ffffff;
+  border-color: var(--orange, #ff5722);
+  box-shadow: 0 10px 25px rgba(255, 87, 34, 0.5);
+}
+
+body.dark-mode .back-to-top__progress-bg {
+  stroke: rgba(255, 255, 255, 0.12);
+}
+
